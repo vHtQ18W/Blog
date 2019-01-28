@@ -73,7 +73,7 @@ export const LinkList = styled.ul`
 export const Block = styled.div`
   display: flex;
   float: left;
-  ${ media.phone`
+  ${ media.tablet`
     float: unset;
     padding: 0;
     justify-content: center;
