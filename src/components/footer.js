@@ -4,12 +4,12 @@ import { FaCopyright, FaGithub } from 'react-icons/fa'
 import media from '../utils/media'
 
 const Container = styled.nav`
-  height: 3em;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   display: flex;
-  margin-top: 4rem;
+  margin: 3rem 0 1rem;
 `
 
 const Content = styled.h2`

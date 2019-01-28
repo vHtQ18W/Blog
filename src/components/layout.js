@@ -70,19 +70,33 @@ const GlobalStyles = createGlobalStyle`
   }
 `
 
-// const Footer = styled.footer`
-//   display: block;
-//   height: 6rem;
-// `
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 85vh;
+  ${ media.phone`
+    min-height: 75vh;
+  ` }
+`
 
 const Content = styled.div`
   width: 60%;
   max-width: 728px;
   margin: 0 auto;
+  flex: 1 0 auto;
+  padding: var( — space) var( — space) 0;
 
   ${ media.tablet`
     width: 80%;
   ` }
+
+  &:after {
+    content: ‘\00a0’;
+    display: block;
+    margin-top: var( — space);
+    height: 0;
+    visibility: hidden;
+  }
 `
 
 class Layout extends Component {
@@ -101,13 +115,17 @@ class Layout extends Component {
         `}
         render={data => (
           <>
-                    <Helmet>
-                      <meta charSet="utf-8" />
-                      <title>{data.site.siteMetadata.title}</title>
-                      <link rel="canonical" href="https://blog.bsch.pw" />
-                    </Helmet>
+            <Helmet>
+              <meta charSet="utf-8" />
+              <title>{data.site.siteMetadata.title}</title>
+              <link rel="canonical" href="https://blog.bsch.pw" />
+            </Helmet>
             <Header title={data.site.siteMetadata.title} />
-            <Content>{children}</Content>
+            <Container>
+              <Content>
+                {children}
+              </Content>
+            </Container>
             <Footer></Footer>
             <GlobalStyles />
           </>
