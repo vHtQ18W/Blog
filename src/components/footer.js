@@ -62,6 +62,14 @@ const Footer = class extends Component {
             vHtQ18W/Blog
             </a>.
           </Block>
+          <Block>
+            Work under
+            <a href="https://creativecommons.org/licenses/by/3.0/"
+              style={{
+                paddingLeft: `0.3rem`
+              }}>
+            CC-BY-3.0</a>.
+          </Block>
         </Content>
       </Container>
     )
