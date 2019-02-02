@@ -10,6 +10,7 @@ export const Container = styled.article`
   ` }
 
   p {
+    text-indent: 2rem;
     line-height: 1.5;
   }
 
