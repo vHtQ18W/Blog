@@ -46,7 +46,7 @@ const Footer = class extends Component {
           </Block>
           <Block>
             Build with&nbsp;
-            <a href="www.gatsbyjs.org">
+            <a href="https://www.gatsbyjs.org">
             Gatsby
             </a>.
           </Block>
