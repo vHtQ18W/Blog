@@ -1,0 +1,16 @@
+baseurl = "https://blog.brs.ngcrl.org"
+languageCode = "en-us"
+title = "Burgess' Blog"
+
+theme = "paper"
+
+[params.author]
+    name = "Burgess Chang"
+
+[params]
+    description = "Programming, Emacs, Linux."
+
+[[menu.main]]
+    name = "Home"
+    identifier = "home"
+    url = "/"
