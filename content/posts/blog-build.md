@@ -2,7 +2,7 @@
 title = "Use Hogo build my blog"
 author = ["Burgess Chang"]
 date = 2019-08-02
-lastmod = 2019-08-02T15:42:47+08:00
+lastmod = 2019-08-02T16:23:28+08:00
 draft = false
 +++
 
@@ -141,3 +141,26 @@ Now you can press `M-X org-capture h` create new blog.
 
 
 ## Published blog {#published-blog}
+
+Now you can published you site. If you don't have a domain you can choose [Github
+Pages](https://pages.github.com) service published you site. I use [Netlify](https://netlify.com) publish my blog.
+
+
+### Push your blog to github repo {#push-your-blog-to-github-repo}
+
+After login, create a new repo and name it such as \`blog\`. Then init your blog
+floder as git directory, push it to github.
+
+```bash
+git init .
+git remote add origin https://path/to/your/repo
+git push -u orgin master
+```
+
+
+### Use Netlify publish site {#use-netlify-publish-site}
+
+Just to two things.
+
+-   Modified DNS setting.
+-   Enable automatic TLS certificates.
