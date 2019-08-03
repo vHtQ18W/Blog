@@ -4,6 +4,8 @@ title = "Burgess' Blog"
 
 theme = "paper"
 
+hasCJKLanguage = true
+
 [params.author]
     name = "Burgess Chang"
 
