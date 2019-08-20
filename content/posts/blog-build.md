@@ -1,5 +1,5 @@
 +++
-title = "Use Hogo build my blog"
+title = "Use Hugo build my blog"
 author = ["Burgess Chang"]
 date = 2019-08-02
 lastmod = 2019-08-02T16:23:28+08:00
