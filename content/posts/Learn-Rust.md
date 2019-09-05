@@ -1,8 +1,8 @@
 +++
 title = "Rust 学习笔记"
 author = ["Burgess Chang"]
-date = 2019-09-05
-lastmod = 2019-09-05T09:43:58+08:00
+date = 2019-08-15
+lastmod = 2019-09-05T16:33:16+08:00
 draft = false
 +++
 
@@ -769,10 +769,7 @@ let burgess_username = burgess.username;
 枚举类型定义时需要声明成员。
 
 ```rust
-enum IpAddKind {
-    V4,
-    V6,
-};
+enum IpAddKind { V4, V6, }
 let four = IpAddKind::V4;
 let six = IpAddKind::V6;
 ```
@@ -782,7 +779,273 @@ let six = IpAddKind::V6;
 
 #### Option 枚举 {#option-枚举}
 
-Rust 并没有 **Null** 值，但拥有一个可以编码存在或不存在的概念枚举 `Option<T>` .
+Rust 并没有 **Null** 值，但拥有一个可以编码存在或不存在的概念枚举 `Option<T>` 。
+
+```rust
+enum Option<T> {
+    Some(T),
+    None,
+}
+```
+
+
+#### match 控制流 {#match-控制流}
+
+Rust 提供一个强大的控制流运算符 - `match` ，它有点类似于 C/CPP 中的 `switch` 。
+
+```rust
+enum Coin { Penny, Nickel, Dime, Quarter, }
+fn value_in_cents(coin: Coin) -> u32 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}
+NOTE: Rust 提供了一个 `_' 通配符匹配所有可能值。
+```
+
+
+#### let if 简单控制流 {#let-if-简单控制流}
+
+`if let` 允许以较短的方式结合 if 和 let 来处理一个模式而忽略其他模式。
+
+```rust
+let some_u8_value = Some(0u8);
+if let Some(3) = some_u8_value {
+    println!("three");
+}
+```
+
+
+### 包、 Crates 与模块 {#包-crates-与模块}
+
+编程可能会遇到方法变量名与其他人的重复的情况，也就是作用域的问题， Rust 提供了一个模块系统来管理作用域，当然也不止于模块：
+
+-   包，构建测试和分享 crate
+-   Crates, 一个模块的树形结构，形成了库或二进制项目
+-   模块，允许使用 use 关键字来控制作用域和路径的私有性
+-   路径，命名结构体、函数、模块等的方式
+
+
+#### 模块 {#模块}
+
+模块允许组织代码。
+
+```rust
+mod sound {
+    fn guita() {
+        // some statements
+    }
+    mod instrument {
+        mod woodwind {
+            fn clarinet() {
+                // some statements
+            }
+        }
+    }
+}
+```
+
+这样边形成了一个 crate 模块。
+
+```nil
+crate
+└── sound
+    ├── instrument
+    |    └── woodwind
+    └── voice
+```
+
+
+#### 路径 {#路径}
+
+Rust 允许使用绝对路径和相对路径，都由 \`::' 来分割。
+
+```rust
+mod sound {
+    fn guita() {
+        // some statements
+    }
+    mod instrument {
+        mod woodwind {
+            fn clarinet() {
+                // some statements
+            }
+        }
+    }
+}
+crate::sound::instrument::woodmind::clarinet(); // absolute path
+sound::sound::instrument::woodmind::clarinet(); // relative path
+```
+
+
+#### 私有性边界 {#私有性边界}
+
+在 Rust 中，模块是私有性边界，有如下规则：
+
+-   所有项默认是私有的
+-   可以使用 `pub` 修饰符变为公有
+-   不允许使用定义在子模块中的私有代码
+-   允许使用定义在任何父模块或当前模块中的代码
+
+<!--listend-->
+
+```rust
+mod sound {
+    fn guita() {
+        // some statements
+    }
+    pub mod instrument {
+        pub mod woodwind {
+            pub fn clarinet() {
+                // some statements
+            }
+        }
+    }
+}
+```
+
+
+#### super 关键字 {#super-关键字}
+
+可以使用 `super` 开头构建相对路径，相当于文件系统中的 \`..', 该路径会以父模块开始。
+
+```rust
+mod instrument {
+    fn clarinet() {
+        super::breathe_in();
+    }
+}
+fn breathe_in() {
+    // some statements
+}
+```
+
+
+#### 结构体和枚举使用 pub {#结构体和枚举使用-pub}
+
+结构体和枚举使用 pub 修饰后，它们的字段仍是私有的。
+
+
+#### use 与 use as {#use-与-use-as}
+
+像 CPP 中使用命名空间或 ECMAScript 中的 import 作用一样， Rust 允许使用 use 关键字来引入模块的作用域，同时也会检查私有性。同样的，也可以使用 `as` 关键字来使用一个模块的别名 `use some:module as alias` 。
+NOTE: 当两个作用域有同名项时，必须引入父模块。
+
+
+#### pub use 重导出名称 {#pub-use-重导出名称}
+
+当使用 use 导入作用域时，在新作用域中可用的名称仍是私有的，如果要在其他作用域中引用这些类型，可以结合 pub 和 use 进行重导出。
+
+```rust
+mod sound {
+    pub mod instrument {
+        pub fn clarinet() {
+            // some statements
+        }
+    }
+}
+mod performance_group {
+    pub use crate::sound::instrument;
+    pub fn clarinet_trio() {
+        instrument::clarinet();
+    }
+}
+crate::performance_group::instrument::clarinet();
+```
+
+
+#### 嵌套路径 {#嵌套路径}
+
+在 ECMAScript 中，经常会有这样的包导入：
+`import { component1, component2 } from'module'`
+在 Rust 中也可以使用类似的嵌套路径来省去大量的 use 行，形如：
+`use std::{cmp::Ordering, io}`
+
+
+#### glob 运算符 {#glob-运算符}
+
+你也可以使用 `*` glob 运算符将一个路径下的所有公有项引入作用域：
+`use std::collections::*`
+
+
+### 通用集合类型 {#通用集合类型}
+
+像 CPP 的标准库一样， Rust 的标准库也提供一些广泛使用的集合类型：
+
+-   vector
+-   string
+-   hash map
+
+
+#### Vector {#vector}
+
+```rust
+fn main() {
+    let mut v: Vec<i32> = Vec::new(); // declare a empty vector.
+    v = vec![1, 2, 3]; // instantiation,
+    v.push(4); // use `push' implement update vector.
+    let third_element: &i32 = &v[2]; // use index get element.
+    match v.get(2) { // use `get' implement get element.
+        Some(third) => println!("The third element is {}", third),
+        None => println!("There is no third element."),
+    }
+    for i in &mut v {  // Traversing vector.
+        *i += 1;
+    }
+} // scope close, `v' will destory.
+```
+
+
+#### String {#string}
+
+```rust
+// String support UTF-8
+let mut s = String::new(); // declare a empty string.
+s = "some data".to_string(); // instantiation.
+s = String::from("some data"); // use `String::from' instantiation
+s.push("a"); // use `push' implement update string.
+s.push_str("bcd"); // use `push_str' implement update string.
+let s2 = String::from("other data");
+let s3 = s + s2; // use `+' merge string.
+let c = s[0]; // use index get element.
+let slice_example = &s[..] // use slice
+for cc in s.chars() { // traversing string.
+    // some statements
+}
+```
+
+
+#### Hash Map {#hash-map}
+
+```rust
+use std::collections::HashMap;
+let mut scores = HashMap::new(); // declare a hash map.
+scores.insert(String::from("Blue"), 10); // use `insert' implement update map.
+scores.insert(String::from("Yellow"), 50);
+// insert a value if key isn't Null but value is Null.
+scores.entry(String::from("Blue")).or_insert(50);
+// another declaration
+let teams  = vec![String::from("Blue"), String::from("Yellow")];
+let initial_scores = vec![10, 50];
+let scores: HashMap<_, _> = teams.iter().zip(initial_scores.iter()).collect();
+let team_name = String::from("Blue");
+let score = scores.get(&team_name); // get value of key.
+for (key, value) in &scores { // traversing hash map.
+    println!("{}: {}", key, value);
+}
+let text = "hello world wonderful world";
+let mut map = HashMap::new();
+for word in text.split_whitespace() {
+    let count = map.entry(word).or_insert(0);
+    *count += 1;
+}
+```
+
+哈希表针对实现了 copy trait 的类型直接拷贝， 而对有拥有所有权的值会移动所有权至
+map 。
 
 
 ## rust-by-example {#rust-by-example}
