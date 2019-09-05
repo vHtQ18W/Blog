@@ -2,7 +2,7 @@
 title = "Rust 学习笔记"
 author = ["Burgess Chang"]
 date = 2019-08-15
-lastmod = 2019-09-05T16:33:16+08:00
+lastmod = 2019-09-05T18:31:55+08:00
 draft = false
 +++
 
@@ -91,8 +91,8 @@ You guessed: 520
 
 -    使用 `Result` 类型处理抛出错误
 
-    `Result` 类型是枚举类型，可以有多种变体。像 `Result` 可以有 `Ok` 和 `Err=。
-    =Result` 有 expect 方法可以调用，就像其他现代语言中的 `try { throw.. } catch {..}`
+    `Result` 类型是枚举类型，可以有多种变体。像 `Result` 可以有 `Ok` 和 `Err` 。
+    `Result` 有 expect 方法可以调用，就像其他现代语言中的 `try { throw.. } catch {..}`
     一样，可以使用它来匹配错误类型的处理。
 
 -    `println!` 中的占位符
@@ -1046,6 +1046,22 @@ for word in text.split_whitespace() {
 
 哈希表针对实现了 copy trait 的类型直接拷贝， 而对有拥有所有权的值会移动所有权至
 map 。
+
+
+### 错误处理 {#错误处理}
+
+Rust 将错误组合成两个类别： **可恢复错误** 和 \*不可恢复错误\*。 C++ 、 Java 中采用异常等机制处理错误， Rust 并没有异常，使用 `Result<T, E>` 处理可恢复错误，使用
+`panic!` 处理不可恢复错误。
+
+
+#### panic！ {#panic}
+
+当执行 panic! 宏时，程序会释出错误，展开并清理栈数据，然后直接推出。
+NOTE: 也可以选择 panic! 宏选择终止方式，不清理数据直接推出，使用的内存交由操作系统处理。
+
+```rust
+panic!("crash and burn");
+```
 
 
 ## rust-by-example {#rust-by-example}
