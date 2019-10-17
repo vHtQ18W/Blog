@@ -1,0 +1,2 @@
+#+TITLE: Burgess' Blog
+Read [[https://blog.ngcrl.org/posts/blog-build/][this]] for more informations.
