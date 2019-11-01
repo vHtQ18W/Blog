@@ -2,7 +2,7 @@
 title = "六年 Linux 之旅带来了什么"
 author = ["Burgess Chang"]
 date = 2019-10-27
-lastmod = 2019-11-01T17:28:51+08:00
+lastmod = 2019-11-01T17:50:35+08:00
 draft = false
 +++
 
@@ -121,3 +121,19 @@ KDE Neon 大火，我也去尝试了一下。 Neon 在国内好像用的人不�
 大家好像更愿意选择 KUbuntu （当然现在 KUbuntu 已经成为历史了）， Neon 是 KDE 社区维护的一个滚动发行版。我对它无法作出太多的评价，因为它没有缺点。
 
 现在我正在使用 Debian sid ，这已经持续了一段时间。它的表现无可指点，十分优秀。尽管没有 ArchLinux/Gentoo 那般峥嵘。我认为 Debian sid 就是我日常使用的最佳选择，它稳定而易用。
+![](https://blog.ngcrl.org/media/burgess-debian.png)
+
+本文的最后，我大概总结下我所使用过的发行版有哪些特点和我认为它们更适用的用户群体，希望能够帮助到他人。
+
+对于中文入门用户，我认为 UbuntuKylin 和 deepin 都是很好的选择。 deepin 有更华丽的界面，但是内核会旧许多。 UbuntuKylin 界面朴实很多，在旧型号的机器上表现不错。
+
+对于 KDE 用户，我认为 KDE Neon 和 ArchLinux 是唯二选择，你可以在这两个发行版上体验到最新的 KDE ，只不过 Neon 上的是由 KDE 社区驱动。
+
+对于期待深入 Linux 的用户，我认为 Fedora 和 ArchLinux 是不错的选择。你可以在这两个发行版上体验许多实验特性，而它们的软件资源本身就十分丰富。 Fedora 的唯一劣势可能就是中文社区的活跃度无法与后者相比。
+
+对于想要或已经成为专业用户的人，我认为 Gentoo 和 ArchLinux 是不错的选择。它们都可以为你提供灵活的选择和配置。
+
+对于想要构建高性能服务器的用户，我推荐 Gentoo 。我的这个看法可能是错的， Gentoo
+可以控制适合设备本身情况的编译参数，而官方也维护这一个安全加固版本，据说以前豆瓣的服务器也是使用 Gentoo。
+
+对于作为桌面日常使用的用户，我推荐 Debian。它的任何分支都挺适合长期使用的，不论是 stable、testing、unstable 分支，都能很好的工作。
