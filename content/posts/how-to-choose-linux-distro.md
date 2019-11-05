@@ -2,7 +2,7 @@
 title = "六年 Linux 之旅带来了什么"
 author = ["Burgess Chang"]
 date = 2019-10-27
-lastmod = 2019-11-01T18:07:23+08:00
+lastmod = 2019-11-05T11:27:26+08:00
 draft = false
 +++
 
@@ -125,7 +125,8 @@ KDE Neon 大火，我也去尝试了一下。 Neon 在国内好像用的人不�
 
 本文的最后，我大概总结下我所使用过的发行版有哪些特点和我认为它们更适用的用户群体，希望能够帮助到他人。
 
-对于中文入门用户，我认为 UbuntuKylin 和 deepin 都是很好的选择。 deepin 有更华丽的界面，但是内核会旧许多。 UbuntuKylin 界面朴实很多，在旧型号的机器上表现不错。
+对于中文入门用户，我认为 UbuntuKylin 是很好的选择。 它在大多数型号的机器上表现的很好，在最近几年桌面环境更迭为 UKUI 之后，交互体验也在渐渐贴近 Windows，比较适合
+Windows 迁往 Linux 的用户迁移。
 
 对于 KDE 用户，我认为 KDE Neon 和 ArchLinux 是唯二选择，你可以在这两个发行版上体验到最新的 KDE ，只不过 Neon 上的是由 KDE 社区驱动。
 
