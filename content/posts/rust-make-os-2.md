@@ -2,7 +2,7 @@
 title = "使用 Rust 构建简单操作系统内核（二）"
 author = ["Burgess Chang"]
 date = 2019-12-17
-lastmod = 2019-12-19T07:58:16+08:00
+lastmod = 2019-12-19T08:02:59+08:00
 draft = false
 +++
 
@@ -114,7 +114,6 @@ pub fn exit_qemu(exit_code: QemuExitCode) {
 
 ```toml
 [package.metadata.bootimage]
-test-args = […]
 test-success-exit-code = 33
 ```
 
@@ -178,7 +177,7 @@ test-timeout = 300
 ## 集成测试 {#集成测试}
 
 将测试框架相关的代码整理到 lib ，并将所有的测试用例分类移动到 _tests_ 目录，这样
-可以通过 `cargo xtest --test test_type` 来指定运行的单元测试。
+可以通过 `cargo xtest --test test_type` 来指定运行的集成测试。
 
 
 ## 总结 {#总结}
