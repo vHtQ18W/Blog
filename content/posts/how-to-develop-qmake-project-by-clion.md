@@ -2,7 +2,7 @@
 title = "使用 Clion 构建 qmake-base 工程"
 author = ["Burgess Chang"]
 date = 2020-01-01
-lastmod = 2020-01-01T05:09:32+08:00
+lastmod = 2020-01-01T05:23:12+08:00
 draft = false
 +++
 
@@ -32,7 +32,7 @@ Compilation database 是一个 clang 提供的指导补全的文档格式，感�
 ```nil
 drwxr-xr-x build/
 lrwxrwxrwx compile_commands.json -> build/compile_commands.json
-drwxr-xr-x src
+drwxr-xr-x srcn
 ```
 
 我已经有了利用 bear make 生成的 compilation database，和 make 后的缓存。简单的点击 `File` -> `Open..` -> _path/to/project/compile\_commands.json_ -> `Open as project` 就可以完成项目的导入。
@@ -73,3 +73,5 @@ drwxr-xr-x src
 最后在指定项选择生成的二进制目标程序就可以使用 CLion 构建与调试了。
 
 这是从已有项目导入 qmake 工程，如果新建工程的话应该是大同小异的。
+
+(2020 的第一天 02:00 就起床了，这代表什么 `。`)
