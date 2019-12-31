@@ -2,7 +2,7 @@
 title = "使用 Clion 构建 qmake-base 工程"
 author = ["Burgess Chang"]
 date = 2020-01-01
-lastmod = 2020-01-01T05:23:12+08:00
+lastmod = 2020-01-01T05:34:44+08:00
 draft = false
 +++
 
@@ -73,5 +73,3 @@ drwxr-xr-x srcn
 最后在指定项选择生成的二进制目标程序就可以使用 CLion 构建与调试了。
 
 这是从已有项目导入 qmake 工程，如果新建工程的话应该是大同小异的。
-
-(2020 的第一天 02:00 就起床了，这代表什么 `。`)
